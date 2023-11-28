@@ -2,12 +2,12 @@
 
 int main()
 {
-	int a,b;
+	int a;
 
 	printf("How long is the line? ");
 	scanf("%d",&a);
 
-	for(b=0 ; b<a ; b++)
+	for( ; a>0 ; a--)
 		putchar('-');
 	putchar('\n');
 

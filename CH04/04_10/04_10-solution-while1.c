@@ -2,7 +2,7 @@
 
 int main()
 {
-	int a,b;
+	int a;
 
 	printf("How long is the line? ");
 	scanf("%d",&a);

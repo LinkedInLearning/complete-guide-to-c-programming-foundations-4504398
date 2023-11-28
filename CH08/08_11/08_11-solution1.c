@@ -12,7 +12,7 @@ int main()
 	/* both allocate and assign the structures */
 	for( x=0; x<26; x++ )
 	{
-		alpha[x] = malloc( sizeof(struct data) * 1);
+		alpha[x] = malloc( sizeof(struct data) );
 		if( alpha[x]==NULL )
 		{
 			puts("Memory allocation error");

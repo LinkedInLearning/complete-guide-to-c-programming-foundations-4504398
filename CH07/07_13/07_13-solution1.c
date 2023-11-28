@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #define ROOMS 12
 #define EMPTY 0
@@ -9,12 +10,37 @@
 #define FALSE 0
 #define TRUE 1
 
+struct player {
+	int position;
+	int alive;
+	int won;
+};
+
+/* process input */
+char getinput(void)
+{
+	const int size = 32;
+	char input[size];
+
+	fgets(input,size,stdin);
+	return(toupper(input[0]));
+}
+
 /* main program */
 int main()
 {
+	int maze[ROOMS];
+	struct player you;
 	int x,done,right,left,back;
 			
 	/* initialization */
+		/* configure the player */
+	you.position = 0;
+	you.alive = TRUE;
+	you.won = FALSE;
+		/* empty all the rooms */
+	for( x=0; x<ROOMS; x++ )
+		maze[x] = EMPTY;
 	
 	/* initial message */
 	puts("Gold Miner");
@@ -31,25 +57,34 @@ int main()
 	while(!done)
 	{
 		/* exit the loop on player victory or death */
+		if( you.alive==FALSE || you.won==TRUE )
+			break;
 
 		/* obtain movement/direction */
+		right = (you.position+ROOMS-1)%ROOMS;
+		left = (you.position+ROOMS+1)%ROOMS;
+		back = (you.position+ROOMS/2)%ROOMS;
 
 		/* update player */
-
+		printf(" You are in chamber %d of the mine\n",
+				you.position+1);
 		/* check adjacent rooms */
 
 		/* interactive commands */
 		printf("Command: ");
-		switch( getchar() )
+		switch( getinput() )
 		{
 			case 'R':
 				puts(" You enter the right chamber");
+				you.position = right;
 				break;
 			case 'L':
 				puts(" You enter the left chamber");
+				you.position = left;
 				break;
 			case 'B':
 				puts(" You enter the back chamber");
+				you.position = back;
 				break;
 			case 'Q':
 				done = TRUE;
