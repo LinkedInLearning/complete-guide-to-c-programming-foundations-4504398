@@ -6,6 +6,6 @@ int main()
 	unsigned x = 100;
 	float pi = 3.14159;
 
-	printf("ch = %c, x = %d, pi = %f\n",ch,x,pi);
+	printf("ch = %c, x = %u, pi = %f\n",ch,x,pi);
 	return 0;
 }
