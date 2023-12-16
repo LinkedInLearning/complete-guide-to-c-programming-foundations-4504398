@@ -2,7 +2,7 @@
 
 int main()
 {
-	puts("I am a C programmer.");
+	const char filename[] = "hello.txt";
 
 	return 0;
 }

@@ -4,9 +4,10 @@
 
 int main()
 {
+	const char filename[] = "alpha.txt";
 	struct stat fstat;
 
-	stat("alpha.txt",&fstat);
+	stat(filename,&fstat);
 	printf("%s is %ld bytes long\n",
 			filename,
 			fstat.st_size

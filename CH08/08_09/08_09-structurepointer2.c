@@ -9,7 +9,7 @@ int main()
 	} *you;
 
 	/* allocate storage for the structure */
-	you = malloc( sizeof(struct person) * 1 );
+	you = malloc( sizeof(struct person) );
 	if( you== NULL)
 	{
 		puts("Unable to allocate storage");

@@ -2,7 +2,7 @@
 
 int main()
 {
-	puts("I am a C programmer.");
+	printf("Hello, world!");
 
 	return 0;
 }

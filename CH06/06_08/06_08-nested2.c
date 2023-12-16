@@ -19,7 +19,7 @@ int main()
 			president.name,
 			president.birthday.month,
 			president.birthday.day,
-			president.birthday.year,
+			president.birthday.year
 		  );
 
 	return(0);

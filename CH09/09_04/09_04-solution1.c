@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main()
 {
@@ -13,7 +12,7 @@ int main()
 	if( fh==NULL )
 	{
 		puts("Error creating file");
-		exit(1);
+		return(1);
 	}
 
 	/* prompt for input */
@@ -31,11 +30,11 @@ int main()
 	if( fh==NULL )
 	{
 		puts("Error opening file");
-		exit(1);
+		return(1);
 	}
 
 	/* read the text */
-	fgets(input,128,fh);
+	fgets(input,64,fh);
 	printf("The file '%s' contains this text:\n",filename);
 	puts(input);
 

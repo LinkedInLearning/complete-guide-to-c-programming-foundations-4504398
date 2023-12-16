@@ -8,28 +8,24 @@ int main()
 		char *name;
 		int age;
 	} *you;
-	char buffer[32];
 
-	/* allocate storage for the structure */
-	you = malloc( sizeof(struct person) * 1 );
+	/* allocate storage */
+	you = malloc( sizeof(struct person) );
 	if( you== NULL)
 	{
 		puts("Unable to allocate storage");
 		exit(1);
 	}
-	
-	you->name = malloc( sizeof(buffer) );
+	you->name = malloc( sizeof(char) * 32 );
 	if( you->name == NULL)
 	{
 		puts("Unable to allocate storage");
 		exit(1);
 	}
-	printf("Enter your name: ");
-	fgets(buffer,32,stdin);
 
-	/* copy the buffer */
-	strcpy(you->name,buffer);
-	/* get your age */
+	/* gather input */
+	printf("Enter your name: ");
+	fgets(you->name,32,stdin);
 	printf("Enter your age: ");
 	scanf("%d",&you->age);
 

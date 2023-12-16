@@ -4,6 +4,7 @@ int main()
 {
 	int artifacts,rooms,paintings,sculptures;
 
+/* code your calculations here */
 	rooms = 12;
 	paintings = 16;
 	sculptures = 4;
