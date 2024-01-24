@@ -1,150 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <unistd.h>
 
-#define ROOMS 12
-#define EMPTY 0
-#define BEAST 1
-#define PIT 2
-#define GOLD 3
-#define FALSE 0
-#define TRUE 1
-
-struct player {
-	int position;
-	int alive;
-	int won;
-};
-
-/* process input */
-char getinput(void)
+void create_file(const char *f)
 {
-	const int size = 32;
-	char input[size];
+	FILE *fh;
 
-	fgets(input,size,stdin);
-	return(toupper(input[0]));
+	/* open/create the file */
+	fh = fopen(f,"w");
+	if( fh==NULL )
+	{
+		printf("Unable to create '%s'\n",f);
+		exit(1);
+	}
+	printf("File '%s' created\n",f);
+
+	/* write your name to the file */
+	fprintf(fh,"Dan Gookin");
+	puts("Data written");
+
+	/* close the file */
+	fclose(fh);
+	printf("File '%s' closed\n",f);
 }
 
-/* check player's status */
-void status(int m[], struct player *y)
+void read_file(const char *f)
 {
-	if( m[y->position]==GOLD )
+	FILE *fh;
+	char buffer[32];
+
+	/* open/read the file */
+	fh = fopen(f,"r");
+	if( fh==NULL )
 	{
-		puts(" You have found the gold!");
-		y->won = TRUE;
-		return;
+		printf("Unable to open '%s'\n",f);
+		exit(1);
 	}
-	if( m[y->position]==BEAST )
-	{
-		puts(" You have met the beast!");
-		y->alive = FALSE;
-		return;
-	}
-	if( m[y->position]==PIT )
-	{
-		puts(" You fall into a bottomless pit!");
-		y->alive = FALSE;
-		return;
-	}
+	printf("File '%s' opened\n",f);
+
+	/* read your name from the file */
+	fgets(buffer,32,fh);
+	printf("The file '%s' contains the text: %s\n",
+			f,
+			buffer
+		  );
+
+	/* close the file */
+	fclose(fh);
+	printf("File '%s' closed\n",f);
 }
 
-/* main program */
+void delete_file(const char *f)
+{
+	int r;
+
+	r = unlink(f);
+	if( r==0 )
+		printf("File '%s' deleted\n",f);
+	else
+		puts("Something went wrong!");
+}
+
 int main()
 {
-	int maze[ROOMS];
-	struct player you;
-	int x,done,right,left,back;
-			
-	/* initialization */
-		/* configure the player */
-	you.position = 0;
-	you.alive = TRUE;
-	you.won = FALSE;
-		/* empty all the rooms */
-	for( x=0; x<ROOMS; x++ )
-		maze[x] = EMPTY;
-		/* set the items */
-	maze[2] = BEAST;
-	maze[6] = PIT;
-	maze[8] = PIT;
-	maze[10] = GOLD;
-	
-	/* initial message */
-	puts("Gold Miner");
-	printf("You're in a mine with %d chambers.\n",ROOMS);
-	puts("Each chamber in the mine has three exits. You can go");
-	puts("(L) left, (R) right, or (B) back. If you enter a");
-	puts("chamber with the beast, you die! If you enter a chamber");
-	puts("with a pit, you die! If you enter the chamber with the");
-	puts("gold, you win! The mine has two pits and one beast!");
-	puts("Find the gold!\n");
+	const char filename[] = "stuff.dat";
 
-	/* main program loop */
-	done = FALSE;
-	while(!done)
-	{
-		/* exit the loop on player victory or death */
-		if( you.alive==FALSE || you.won==TRUE )
-			break;
-
-		/* obtain movement/direction */
-		right = (you.position+ROOMS-1)%ROOMS;
-		left = (you.position+ROOMS+1)%ROOMS;
-		back = (you.position+ROOMS/2)%ROOMS;
-
-		/* update player */
-		printf(" You are in chamber %d of the mine\n",
-				you.position+1);
-		/* check adjacent rooms */
-		if( maze[right]==PIT || maze[left]==PIT || maze[back]==PIT )
-			puts(" A cold breeze blows from a nearby chamber");
-		if( maze[right]==BEAST || maze[left]==BEAST || maze[back]==BEAST )
-			puts(" A horrible smell is coming from a nearby chamber");
-		if( maze[right]==GOLD || maze[left]==GOLD || maze[back]==GOLD )
-			puts(" You see a faint glittering from a nearby chamber");
-
-		/* interactive commands */
-		printf("Command: ");
-		switch( getinput() )
-		{
-			case 'R':
-				puts(" You enter the right chamber");
-				you.position = right;
-				status(maze,&you);
-				break;
-			case 'L':
-				puts(" You enter the left chamber");
-				you.position = left;
-				status(maze,&you);
-				break;
-			case 'B':
-				puts(" You enter the back chamber");
-				you.position = back;
-				status(maze,&you);
-				break;
-			case 'Q':
-				done = TRUE;
-				puts("Goodbye!");
-				break;
-			case 'H':
-			case '?':
-				puts(" You may go (R)ight, (L)eft, or (B)ack");
-				puts(" Or you can (Q)uit");
-				break;
-			case '\n':
-				break;
-			default:
-				puts(" ? I don't know that command");
-		}
-	}
-
-	/* output results */
-	if( you.won==TRUE )
-		puts(" You win!");
-	if( you.alive == FALSE )
-		puts(" You have died!");
-	puts("Game over");
+	create_file(filename);
+	read_file(filename);
+	delete_file(filename);
 
 	return 0;
 }

@@ -1,24 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* main program */
 int main()
 {
-	/* initialization */
+	//declare constant ratio equal to 3/4
+	//declare char a
+	//declare integer b
+	//declare float c
 
-	/* initial message */
-Gold Miner
-You're in a mine with %d chambers.\n
-Each chamber in the mine has three exits. You can go
-(L) left, (R) right, or (B) back. If you enter a
-chamber with the beast, you die! If you enter a chamber
-with a pit, you die! If you enter the chamber with the
-gold, you win! The mine has two pits and one beast!
-Find the gold!\n
+	//assign char
+	//assign integer
+	//assign float
 
-	/* main program loop */
-
-	/* output results */
+	//output char value, e.g., "the value of variable a is '?'"
+	//output integer value, e.g., "the value of variable b is ??"
+	//output float value, e.g., "the value of variable c is ???.??"
+	//output value of ratio, e.g., "the value of constant ratio is ???.??"
 
 	return 0;
 }

@@ -8,13 +8,13 @@ int main()
 	scanf("%d",&a);
 	scanf("%d",&b);
 
-	/* add */
-	/* subtract */
-	/* multiply */
-	/* divide */
-	/* modulus */
-	/* bit shift right */
-	/* bit shift left */
+	// add
+	// subtract
+	// multiply
+	// divide
+	// modulus
+	// bit shift right
+	// bit shift left
 
 	return 0;
 }
