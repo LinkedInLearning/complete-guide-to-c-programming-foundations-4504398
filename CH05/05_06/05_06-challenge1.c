@@ -2,24 +2,26 @@
 #include <stdlib.h>
 #include <time.h>
 
+int roll(void)
+{
+	int r;
+	r = rand() % 6;
+	r += 1;
+	return r;
+}
+
 int main()
 {
-	int r,dice1,dice2,dice3;
+	int dice1, dice2, dice3;
 
 	/* seed the randomizer */
-	srand( (unsigned)time(NULL) );
-	
-	puts("Roll them bones!");
-	r = rand() % 6;
-	r += 1;
-	dice1 = r;
-	r = rand() % 6;
-	r += 1;
-	dice2 = r;
-	r = rand() % 6;
-	r += 1;
-	dice3 = r;
-	printf("You rolled %d - %d - %d\n",dice1,dice2,dice3);
+	srand((unsigned)time(NULL));
 
-	return(0);
+	puts("Roll them bones!");
+	dice1 = roll();
+	dice2 = roll();
+	dice3 = roll();
+	printf("You rolled %d - %d - %d\n", dice1, dice2, dice3);
+
+	return (0);
 }

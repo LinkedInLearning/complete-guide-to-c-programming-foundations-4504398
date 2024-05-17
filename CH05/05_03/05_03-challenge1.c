@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+void line (void)
+{
+	puts("----------------------------------------");
+}
+
 int main()
 {
 	puts("How to Fight Off a Robot Attack");

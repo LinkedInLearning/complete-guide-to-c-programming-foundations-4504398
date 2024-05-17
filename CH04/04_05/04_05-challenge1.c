@@ -7,14 +7,21 @@ int main()
 	printf("Select item 1, 2, or 3: ");
 	scanf("%d",&a);
 
-	if( a == 1 )
+	switch (a)
+	{
+	case 1:
 		puts("This is the first item");
-	else if( a == 2 )
+		break;
+	case 2:
 		puts("This is the second item");
-	else if( a == 3)
+		break;
+	case 3:
 		puts("This is the third item");
-	else
+		break;
+	default:
 		puts("Invalid choice!");
+	}
+
 
 	return(0);
 }
